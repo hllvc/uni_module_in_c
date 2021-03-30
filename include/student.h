@@ -5,12 +5,17 @@
 #define EMAIL_LENGTH 45
 #define FIRST_LENGTH 25
 #define LAST_LENGTH 25
+
 #define MAX_PASSWORD 20
 #define MIN_PASSWORD 8
+
 #define MAX_AGE 75
 #define MIN_AGE 18
+
 #define MAX_ID 9999999999
 #define MIN_ID 1000000000
+
+#define MAX_STUDENTS 5
 
 // definisemo strukturu student
 typedef struct stuent_t {
