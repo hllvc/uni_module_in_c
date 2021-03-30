@@ -17,6 +17,8 @@ void loadStudents(Student allStudents[]) {
 	if (file == NULL)
 		fclose(fopen("students.dat", "wb+"));
 	if (file != NULL)
-		while(fread(allStudents + numberOfStudents++, sizeof(Student), 1, file));
+		while(fread(allStudents + numberOfStudents, sizeof(Student), 1, file)) {
+			numberOfStudents++;
+		}
 	fclose(file);
 }
