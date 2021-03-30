@@ -1,8 +1,38 @@
 #include <stdio.h>
+#include <stdlib.h>
+#include <string.h>
 
 #include "../include/menu-extra.h"
+#include "../include/student-extra.h"
 
-extern int numberOfStudents;
+Student * const login() {
+	Student * const student = malloc(sizeof(Student));
+	char email[EMAIL_LENGTH], password[MAX_PASSWORD];
+	while (1) {
+		printf("\nEmail: ");
+		scanf("%s", email);
+		if (!emailExists(email))
+			printf("Ucenik sa unesenim emailom ne postoji!\n");
+		else {
+			while (1) {
+				printf("Password: ");
+				scanf("%s", password);
+				for (int i = 0; i < numberOfStudents; i++) {
+					if (!strcmp((allStudents + i)->password_, password))
+						return (allStudents + i);
+				printf("Pogresna sifra!\n'");
+				}
+			}
+		}
+	}
+	return student;
+}
+
+const int isAdmin(Student const * const student) {
+	if (student->id_ == 1)
+		return 1;
+	return 0;
+}
 
 void appendStudent(Student const * const student) {
 	FILE * file = fopen("students.dat", "ab+");

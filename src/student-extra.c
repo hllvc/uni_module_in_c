@@ -5,9 +5,10 @@
 #include "../include/student-extra.h"
 
 const int emailExists(char const * const email) {
-	for (int i = 0; i < numberOfStudents; i++)
-		if ((allStudents + i)->email_ == email)
+	for (int i = 0; i < numberOfStudents; i++) {
+		if (!strcmp((allStudents + i)->email_, email))
 			return 1;
+	}
 	return 0;
 }
 

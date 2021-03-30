@@ -3,6 +3,11 @@
 
 #include "../include/student.h"
 
+extern int numberOfStudents;
+extern Student allStudents[];
+
+Student * const login();
+const int isAdmin(Student const * const student);
 void appendStudent(Student const * const student);
 void loadStudents(Student allStudents[]);
 
