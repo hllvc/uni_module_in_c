@@ -9,7 +9,6 @@ int numberOfStudents = 0;
 Student allStudents[MAX_STUDENTS];
 
 int main(void) {
-	/* appendStudent(); */
 	loadStudents(allStudents);
 	Student * const student = login();
 	if (isAdmin(student))

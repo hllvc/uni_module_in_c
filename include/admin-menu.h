@@ -6,6 +6,7 @@
 #define CHOICE3 '3'
 #define CHOICE4 '4'
 #define CHOICE5 '5'
+#define CHOICEr 'r'
 #define CHOICE0 '0'
 
 #include "../include/student.h"

@@ -5,7 +5,7 @@
 #include "../include/menu-extra.h"
 #include "../include/student-extra.h"
 
-Student * const login() {
+Student * const login(void) {
 	Student * const student = malloc(sizeof(Student));
 	char email[EMAIL_LENGTH], password[MAX_PASSWORD];
 	while (1) {
@@ -20,8 +20,8 @@ Student * const login() {
 				for (int i = 0; i < numberOfStudents; i++) {
 					if (!strcmp((allStudents + i)->password_, password))
 						return (allStudents + i);
-				printf("Pogresna sifra!\n'");
 				}
+				printf("Pogresna sifra!\n");
 			}
 		}
 	}
@@ -29,21 +29,26 @@ Student * const login() {
 }
 
 const int isAdmin(Student const * const student) {
-	if (student->id_ == 12)
+	if (student->id_ == 1)
 		return 1;
 	return 0;
 }
 
-/* void appendStudent() { */
-/* 	Student student; */
-/* 	setEmail(&student); */
-/* 	setPassword(&student); */
-/* 	student.id_ = 1; */
+void resetData(void) {
+	Student student;
+	setEmail(&student);
+	setPassword(&student);
+	student.id_ = 1;
+	FILE * file = fopen("students.dat", "wb+");
+	if (file != NULL)
+		fwrite(&student, sizeof(Student), 1, file);
+	fclose(file);
+}
+
 void appendStudent(Student const * const student) {
-	FILE * file = fopen("students.dat.default", "ab+");
+	FILE * file = fopen("students.dat", "ab+");
 	if (file != NULL)
 		fwrite(student, sizeof(Student), 1, file);
-		/* fwrite(&student, sizeof(Student), 1, file); */
 	fclose(file);
 }
 

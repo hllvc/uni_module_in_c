@@ -6,10 +6,10 @@
 extern int numberOfStudents;
 extern Student allStudents[];
 
-Student * const login();
+Student * const login(void);
 const int isAdmin(Student const * const student);
 void appendStudent(Student const * const student);
-// void appendStudent();
+void resetData(void);
 void loadStudents(Student allStudents[]);
 
 #endif // __MENU_EXTRA_H__
