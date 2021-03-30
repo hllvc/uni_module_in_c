@@ -27,13 +27,15 @@ typedef struct stuent_t {
 	
 } Student;
 
-void setId(Student const * const student);
-void setEmail(Student const * const student);
-void setPassword(Student const * const student);
-void setFirstName(Student const * const student);
-void setLastName(Student const * const student);
-void setAge(Student const * const student);
-void setGrade(Student const * const student);
-void setNumberOfPoints(Student const * const student);
+void setId(Student * const student);
+void setEmail(Student * const student);
+void setPassword(Student * const student);
+void setFirstName(Student * const student);
+void setLastName(Student * const student);
+void setAge(Student * const student);
+void setGrade(Student * const student);
+void setNumberOfPoints(Student * const student);
+
+void printStudent(Student const * const student);
 
 #endif // __STUDENT_C__
