@@ -29,15 +29,21 @@ Student * const login() {
 }
 
 const int isAdmin(Student const * const student) {
-	if (student->id_ == 1)
+	if (student->id_ == 12)
 		return 1;
 	return 0;
 }
 
+/* void appendStudent() { */
+/* 	Student student; */
+/* 	setEmail(&student); */
+/* 	setPassword(&student); */
+/* 	student.id_ = 1; */
 void appendStudent(Student const * const student) {
-	FILE * file = fopen("students.dat", "ab+");
+	FILE * file = fopen("students.dat.default", "ab+");
 	if (file != NULL)
 		fwrite(student, sizeof(Student), 1, file);
+		/* fwrite(&student, sizeof(Student), 1, file); */
 	fclose(file);
 }
 

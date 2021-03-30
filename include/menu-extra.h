@@ -9,6 +9,7 @@ extern Student allStudents[];
 Student * const login();
 const int isAdmin(Student const * const student);
 void appendStudent(Student const * const student);
+// void appendStudent();
 void loadStudents(Student allStudents[]);
 
 #endif // __MENU_EXTRA_H__
