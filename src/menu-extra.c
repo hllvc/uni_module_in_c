@@ -6,16 +6,20 @@
 #include "../include/student-extra.h"
 
 Student * const login(void) {
+	printf("\n----------------------");
+	printf("\nLOGIN MENU\n");
 	Student * const student = getStudent();
 	char password[MAX_PASSWORD];
 	while (1) {
-		printf("Password: ");
+		printf("\n* Password: ");
 		scanf("%s", password);
 		for (int i = 0; i < numberOfStudents; i++) {
 			if (!strcmp(student->password_, password))
 				return student;
 		}
-		printf("Pogresna sifra!\n");
+		printf("\n>------------------<\n");
+		printf("!! Pogresna sifra !!");
+		printf("\n>------------------<\n");
 	}
 }
 
@@ -29,10 +33,13 @@ Student * const getStudent(void) {
 	Student * student;
 	char email[EMAIL_LENGTH];
 	while (1) {
-		printf("\nEmail: ");
+		printf("\n* Email: ");
 		scanf("%s", email);
-		if (!emailExists(email))
-			printf("Ucenik sa unesenim emailom ne postoji!\n");
+		if (!emailExists(email)) {
+			printf("\n>-----------------------------------------<\n");
+			printf("!! Ucenik sa unesenim emailom ne postoji !!");
+			printf("\n>-----------------------------------------<\n");
+		}
 		else {
 			for (int i = 0; i < numberOfStudents; i++)
 				if (!strcmp((allStudents + i)->email_, email)) {

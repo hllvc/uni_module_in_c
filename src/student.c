@@ -19,7 +19,7 @@ void setId(Student * const student) {
 void setEmail(Student * const student) {
 	char email[EMAIL_LENGTH];
 	do {
-	printf("Email: ");
+	printf("* Email: ");
 		scanf("%s", email);
 	} while (emailExists(email));
 	strcpy(student->email_, email);
@@ -28,7 +28,7 @@ void setEmail(Student * const student) {
 void setPassword(Student * const student) {
 	char password[MAX_PASSWORD];
 	do {
-	printf("Password: ");
+	printf("* Password: ");
 		scanf("%s", password);
 	} while (notValidPassword(password));
 	strcpy(student->password_, password);
@@ -36,14 +36,14 @@ void setPassword(Student * const student) {
 
 void setFirstName(Student * const student) {
 	char fName[FIRST_LENGTH];
-	printf("First name: ");
+	printf("* First name: ");
 	scanf("%s", fName);
 	strcpy(student->firsName_, fName);
 }
 
 void setLastName(Student * const student) {
 	char lName[LAST_LENGTH];
-	printf("Last name: ");
+	printf("* Last name: ");
 	scanf("%s", lName);
 	strcpy(student->lastName_, lName);
 }

@@ -41,6 +41,4 @@ void setAge(Student * const student);
 void setGrade(Student * const student);
 void setNumberOfPoints(Student * const student);
 
-void printStudent(Student const * const student);
-
 #endif // __STUDENT_C__

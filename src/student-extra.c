@@ -33,7 +33,7 @@ const int notValidAge(int const age) {
 }
 
 void printStudent(Student const * const student) {
-	printf("\nStudent");
+	printf("\n----------------------");
 	printf("\nFirst name: %s", student->firsName_);
 	printf("\nLast name: %s", student->lastName_);
 	printf("\nEmail: %s", student->email_);
