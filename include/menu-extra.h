@@ -8,8 +8,10 @@ extern Student allStudents[];
 
 Student * const login(void);
 const int isAdmin(Student const * const student);
+Student * const getStudent(void);
+void updateData();
 void appendStudent(Student const * const student);
 void resetData(void);
-void loadStudents(Student allStudents[]);
+void loadStudents();
 
 #endif // __MENU_EXTRA_H__

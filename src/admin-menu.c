@@ -10,7 +10,7 @@
 void adminMenu(void) {
 	char choice;
 	while (1) {
-		loadStudents(allStudents);
+		/* loadStudents(allStudents); */
 		printf("\nADMIN MENU\n\n");
 		printf("(%c) Novi student\n", CHOICE1);
 		printf("(%c) Uredi studenta\n", CHOICE2);
@@ -26,9 +26,13 @@ void adminMenu(void) {
 		switch (choice) {
 			case CHOICE1:
 				addStudent();
+				loadStudents(allStudents);
 				break;
 			case CHOICE2:
 				editStudent();
+				break;
+			case CHOICE3:
+				deleteStudent();
 				break;
 			case CHOICE4:
 				listStudents(allStudents);
@@ -54,34 +58,27 @@ void addStudent(void) {
 	setPassword(&student);
 	setId(&student);
 	appendStudent(&student);
+	numberOfStudents++;
 }
 
 void editStudent(void) {
-	Student * student;
-	char email[EMAIL_LENGTH];
-	while (strlen(student->email_) == 0) {
-		printf("\nEmail: ");
-		scanf("%s", email);
-		if (!emailExists(email))
-			printf("Ucenik sa unesenim emailom ne postoji!\n");
-		else {
-			for (int i = 0; i < numberOfStudents; i++)
-				if (!strcmp((allStudents + i)->email_, email)) {
-					student = allStudents + i;
-				}
-		}
-	}
+	Student * const student = getStudent();
 	printf("\nUnesite nove podatke!\n");
 	setFirstName(student);
 	setLastName(student);
-	setEmail(student);
+	updateData();
 }
 
-void deleteStudent(void);
+void deleteStudent(void) {
+	Student * const student = getStudent();
+	student->id_ = 0;
+	updateData();
+	numberOfStudents--;
+}
 
 void listStudents(Student const allStudents[]) {
 	for (int i = 0; i < numberOfStudents; i++) {
-		if (!isAdmin((allStudents + i)))
+		if (!isAdmin(allStudents + i))
 			printStudent(allStudents + i);
 	}
 }

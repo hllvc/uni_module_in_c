@@ -4,5 +4,5 @@
 #include "../include/student-extra.h"
 
 void studentMenu(Student const * const student) {
-	printStudent(student);
+	
 }

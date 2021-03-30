@@ -6,26 +6,17 @@
 #include "../include/student-extra.h"
 
 Student * const login(void) {
-	Student * const student = malloc(sizeof(Student));
-	char email[EMAIL_LENGTH], password[MAX_PASSWORD];
+	Student * const student = getStudent();
+	char password[MAX_PASSWORD];
 	while (1) {
-		printf("\nEmail: ");
-		scanf("%s", email);
-		if (!emailExists(email))
-			printf("Ucenik sa unesenim emailom ne postoji!\n");
-		else {
-			while (1) {
-				printf("Password: ");
-				scanf("%s", password);
-				for (int i = 0; i < numberOfStudents; i++) {
-					if (!strcmp((allStudents + i)->password_, password))
-						return (allStudents + i);
-				}
-				printf("Pogresna sifra!\n");
-			}
+		printf("Password: ");
+		scanf("%s", password);
+		for (int i = 0; i < numberOfStudents; i++) {
+			if (!strcmp(student->password_, password))
+				return student;
 		}
+		printf("Pogresna sifra!\n");
 	}
-	return student;
 }
 
 const int isAdmin(Student const * const student) {
@@ -34,14 +25,36 @@ const int isAdmin(Student const * const student) {
 	return 0;
 }
 
+Student * const getStudent(void) {
+	Student * student;
+	char email[EMAIL_LENGTH];
+	while (1) {
+		printf("\nEmail: ");
+		scanf("%s", email);
+		if (!emailExists(email))
+			printf("Ucenik sa unesenim emailom ne postoji!\n");
+		else {
+			for (int i = 0; i < numberOfStudents; i++)
+				if (!strcmp((allStudents + i)->email_, email)) {
+					return allStudents + i;
+				}
+		}
+	}
+}
+
+void updateData() {
+	resetData();
+	for (int i = 0; i < numberOfStudents; i++) {
+		if ((allStudents + i)->id_ != 0)
+			appendStudent(allStudents + i);
+	}
+}
+
 void resetData(void) {
-	Student student;
-	setEmail(&student);
-	setPassword(&student);
-	student.id_ = 1;
+	fclose(fopen("students.dat", "wb+"));
+	Student student = {1, "admin", "admin"};
 	FILE * file = fopen("students.dat", "wb+");
-	if (file != NULL)
-		fwrite(&student, sizeof(Student), 1, file);
+	fwrite(&student, sizeof(Student), 1, file);
 	fclose(file);
 }
 
@@ -56,7 +69,7 @@ void loadStudents(Student allStudents[]) {
 	numberOfStudents = 0;
 	FILE * file = fopen("students.dat", "rb+");
 	if (file == NULL)
-		fclose(fopen("students.dat", "wb+"));
+		resetData();
 	if (file != NULL)
 		while(fread(allStudents + numberOfStudents, sizeof(Student), 1, file)) {
 			numberOfStudents++;
