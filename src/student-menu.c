@@ -24,14 +24,15 @@ void studentMenu(Student const * const student) {
 				showProfile(student);
 				break;
 			case CHOICE2:
+				startExam(student);
 				break;
 			case CHOICE0:
 				printf("!! Gasenje programa ...");
 				exit(0);
 			default:
-				printf(">-------------------<");
+				printf("\n>-------------------<\n");
 				printf("!! Pogresan unos !!");
-				printf(">-------------------<");
+				printf("\n>-------------------<");
 		}
 	};
 }
@@ -41,13 +42,20 @@ void showProfile(Student const * const student) {
 }
 
 void startExam(Student const * const student) {
-	Question exam[EXAM_LENGTH];
-	int answer;
-	loadExam(exam);
-	printf("%s", exam->name_);
-	Answer answers[NUMBER_OF_ANSWERS];
-	for (int i = 0; i < NUMBER_OF_ANSWERS; i++)
-		printf("%s", answers->name_);
-	printf("Unesite odgovor: ");
-	scanf("%d", &answer);
+	printf("\n>---------------<\n");
+	printf("!! Not working !!");
+	printf("\n>---------------<");
+	/* Question exam[EXAM_LENGTH]; */
+	/* Answer answers[NUMBER_OF_ANSWERS]; */
+	/* int answer; */
+	/* loadExam(exam); */
+	/* for (int i = 0; i < EXAM_LENGTH; i++) { */
+	/* 	printf("%s", exam->name_); */
+	/* 	getQuestion(answers, i); */
+	/* 	for (int i = 0; i < NUMBER_OF_ANSWERS; i++) { */
+	/* 		printf("%s", (answers + i)->name_); */
+	/* 		printf("Unesite odgovor: "); */
+	/* 		scanf("%d", &answer); */
+	/* 	} */
+	/* } */
 }

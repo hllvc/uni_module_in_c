@@ -111,7 +111,7 @@ void loadExam(Question exam[]) {
 
 void getQuestion(Answer answers[], int const number) {
 	char filename[16];
-	sprintf(filename, "Q&A_%d", number);
+	sprintf(filename, "Q&A_%d.dat", number);
 	int counter = 0;
 	FILE * file = fopen(filename, "rb+");
 	if (file != NULL)

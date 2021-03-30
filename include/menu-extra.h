@@ -17,5 +17,6 @@ void saveExam(Question exam[], int const examLength);
 void resetData(void);
 void loadStudents(Student allStudents[]);
 void loadExam(Question exam[]);
+void getQuestion(Answer answers[], int const number);
 
 #endif // __MENU_EXTRA_H__

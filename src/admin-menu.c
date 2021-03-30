@@ -49,9 +49,9 @@ void adminMenu(void) {
 				printf("!! Gasenje programa ...");
 				exit(0);
 			default:
-				printf(">-------------------<");
+				printf("\n>-----------------<\n");
 				printf("!! Pogresan unos !!");
-				printf(">-------------------<");
+				printf("\n>-----------------<");
 		}
 	};
 
@@ -62,9 +62,10 @@ void addStudent(void) {
 	printf("\n-------------------\n");
 	printf("Novi student");
 	printf("\n-------------------\n");
-	Student student;
+	Student student = {0, "", "", "", "", 0, 0, 0};
 	setFirstName(&student);
 	setLastName(&student);
+	setAge(&student);
 	setEmail(&student);
 	setPassword(&student);
 	setId(&student);
