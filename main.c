@@ -1,4 +1,5 @@
 #include <stdio.h>
+#include <stdlib.h>
 
 #include "include/admin-menu.h"
 #include "include/student-menu.h"

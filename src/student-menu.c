@@ -3,6 +3,8 @@
 
 #include "../include/student-menu.h"
 #include "../include/student-extra.h"
+#include "../include/menu-extra.h"
+#include "../include/exam.h"
 
 void studentMenu(Student const * const student) {
 	char choice;
@@ -36,4 +38,16 @@ void studentMenu(Student const * const student) {
 
 void showProfile(Student const * const student) {
 	printStudent(student);
+}
+
+void startExam(Student const * const student) {
+	Question exam[EXAM_LENGTH];
+	int answer;
+	loadExam(exam);
+	printf("%s", exam->name_);
+	Answer answers[NUMBER_OF_ANSWERS];
+	for (int i = 0; i < NUMBER_OF_ANSWERS; i++)
+		printf("%s", answers->name_);
+	printf("Unesite odgovor: ");
+	scanf("%d", &answer);
 }

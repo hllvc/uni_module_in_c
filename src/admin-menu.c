@@ -6,6 +6,7 @@
 #include "../include/student.h"
 #include "../include/menu-extra.h"
 #include "../include/student-extra.h"
+#include "../include/exam.h"
 
 void adminMenu(void) {
 	char choice;
@@ -16,6 +17,7 @@ void adminMenu(void) {
 		printf("(%c) Uredi studenta\n", CHOICE2);
 		printf("(%c) Obrisi studenta\n", CHOICE3);
 		printf("(%c) Prikazi sve studente\n", CHOICE4);
+		printf("(%c) Kreiraj ispit\n", CHOICE5);
 		printf("\n(%c) Resetuj sve podatke\n", CHOICEr);
 
 		printf("\n(%c) Kraj\n", CHOICE0);
@@ -110,5 +112,25 @@ void listStudents(Student const allStudents[]) {
 	}
 }
 void createExam(void) {
-
+	printf("\n-------------------\n");
+	printf("Kreiranje ispita");
+	printf("\n-------------------\n");
+	int examLength;
+	printf("Broj pitanja: ");
+	scanf("%d", &examLength);
+	char filename[16];
+	Question exam[examLength];
+	Answer answer;
+	for (int i = 0; i < examLength; i++) {
+		sprintf(filename, "Q&A_%d.dat", i+1);
+		setQuestion(exam + i);
+		setPoints(exam + i);
+		for (int answerId = 1; answerId <= NUMBER_OF_ANSWERS; answerId++) {
+			setAnswerId(&answer, answerId);
+			setAnswer(&answer, answerId);
+			appendAnswer(filename, &answer);
+		}
+		setCorrectAnswer(exam + i);
+	}
+	saveExam(exam, examLength);
 }
