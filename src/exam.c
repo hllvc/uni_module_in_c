@@ -9,7 +9,7 @@ void setQuestion(Question * const question) {
 
 void setPoints(Question * const question) {
 	printf("* Broj poena za dato pitanje: ");
-	scanf("%lf", &question->numberOfPoints_);
+	scanf(" %lf", &question->numberOfPoints_);
 }
 
 void setCorrectAnswer(Question * const question) {

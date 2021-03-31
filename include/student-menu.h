@@ -7,8 +7,10 @@
 
 #include "../include/student.h"
 
-void studentMenu(Student const * const student);
+extern int numberOfQuestions;
+
+void studentMenu(Student * const student);
 void showProfile(Student const * const student);
-void startExam(Student const * const student);
+void startExam(Student * const student);
 
 #endif // __STUDENT_MENU_H__

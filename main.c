@@ -7,6 +7,7 @@
 #include "include/menu-extra.h"
 
 int numberOfStudents = 0;
+int numberOfQuestions = 0;
 Student allStudents[MAX_STUDENTS];
 
 int main(void) {

@@ -6,7 +6,7 @@
 #include "../include/menu-extra.h"
 #include "../include/exam.h"
 
-void studentMenu(Student const * const student) {
+void studentMenu(Student * const student) {
 	char choice;
 	while (1) {
 		printf("\n\n----------------------");
@@ -41,21 +41,32 @@ void showProfile(Student const * const student) {
 	printStudent(student);
 }
 
-void startExam(Student const * const student) {
-	printf("\n>---------------<\n");
-	printf("!! Not working !!");
-	printf("\n>---------------<");
-	/* Question exam[EXAM_LENGTH]; */
-	/* Answer answers[NUMBER_OF_ANSWERS]; */
-	/* int answer; */
-	/* loadExam(exam); */
-	/* for (int i = 0; i < EXAM_LENGTH; i++) { */
-	/* 	printf("%s", exam->name_); */
-	/* 	getQuestion(answers, i); */
-	/* 	for (int i = 0; i < NUMBER_OF_ANSWERS; i++) { */
-	/* 		printf("%s", (answers + i)->name_); */
-	/* 		printf("Unesite odgovor: "); */
-	/* 		scanf("%d", &answer); */
-	/* 	} */
-	/* } */
+void startExam(Student * const student) {
+	/* printf("\n>---------------<\n"); */
+	/* printf("!! Not working !!"); */
+	/* printf("\n>---------------<"); */
+	resetExamData(student);
+	Question exam[EXAM_LENGTH];
+	Answer answers[NUMBER_OF_ANSWERS];
+	int answer;
+	loadExam(exam);
+	for (int i = 0; i < numberOfQuestions; i++) {
+		printf("\n--------------------\n");
+		printf("Pitanje %d: %s?\n\n", i+1,(exam + i)->name_);
+		getQuestion(answers, i+1);
+		for (int i = 0; i < NUMBER_OF_ANSWERS; i++) {
+			printf("(%d) %s\n", i+1,(answers + i)->name_);
+		}
+		printf("\nUnesite odgovor: ");
+		scanf("%d", &answer);
+		if((exam + i)->correctAnswer_ == answer) {
+			printf("Tacno!\n");
+			printf("Broj osvojenih poena %lf", (exam + i)->numberOfPoints_);
+			appendPoints(student, exam->numberOfPoints_);
+		}
+		else printf("Netacno!");
+		printf("\n--------------------------\n");
+	}
+	gradeStudent(student);
+	updateData();
 }

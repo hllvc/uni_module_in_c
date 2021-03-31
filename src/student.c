@@ -51,19 +51,8 @@ void setLastName(Student * const student) {
 void setAge(Student * const student) {
 	int age;
 	do {
+		printf("* Age: ");
 		scanf("%d", &age);
 	} while (notValidAge(age));
 	student->age_ = age;
-}
-
-void setGrade(Student * const student) {
-	int grade;
-	scanf("%d", &grade);
-	student->grade_ = grade;
-}
-
-void setNumberOfPoints(Student * const student) {
-	double points;
-	scanf("%lf", &points);
-	student->numberOfPoints_ = points;
 }

@@ -101,11 +101,11 @@ void loadStudents(Student allStudents[]) {
 }
 
 void loadExam(Question exam[]) {
-	int counter = 0;
+	numberOfQuestions = 0;
 	FILE * file = fopen("exam.dat", "rb+");
 	if (file != NULL)
-		while(fread(exam + counter, sizeof(Question), 1, file))
-			counter++;
+		while(fread(exam + numberOfQuestions, sizeof(Question), 1, file))
+			numberOfQuestions++;
 	fclose(file);
 }
 

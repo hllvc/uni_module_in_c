@@ -5,6 +5,7 @@
 #include "../include/exam.h"
 
 extern int numberOfStudents;
+extern int numberOfQuestions;
 extern Student allStudents[];
 
 Student * const login(void);
