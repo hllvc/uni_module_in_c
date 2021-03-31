@@ -75,6 +75,10 @@ void addStudent(void) {
 }
 
 void editStudent(void) {
+	if (!(numberOfStudents > 1)) {
+		printf("\n!! Nema registrovanih studenata !!");
+		return;
+	}
 	printf("\n-------------------\n");
 	printf("Uredi studenta");
 	printf("\n-------------------\n");
@@ -89,6 +93,10 @@ void editStudent(void) {
 }
 
 void deleteStudent(void) {
+	if (!(numberOfStudents > 1)) {
+		printf("\n!! Nema registrovanih studenata !!");
+		return;
+	}
 	printf("\n-------------------\n");
 	printf("Obrisi studenta");
 	printf("\n-------------------\n");
@@ -102,6 +110,10 @@ void deleteStudent(void) {
 }
 
 void listStudents(Student const allStudents[]) {
+	if (!(numberOfStudents > 1)) {
+		printf("\n!! Nema registrovanih studenata !!");
+		return;
+	}
 	printf("\n-------------------\n");
 	printf("Lista svih studenata");
 	printf("\n-------------------\n");
@@ -115,13 +127,13 @@ void createExam(void) {
 	printf("Kreiranje ispita");
 	printf("\n-------------------\n");
 	int examLength;
-	printf("Broj pitanja: ");
+	printf("\nBroj pitanja: ");
 	scanf("%d", &examLength);
 	char filename[16];
 	Question exam[examLength];
 	Answer answer;
 	for (int i = 0; i < examLength; i++) {
-		sprintf(filename, "Q&A_%d.dat", i+1);
+		sprintf(filename, "exam/Q&A_%d.dat", i+1);
 		setQuestion(exam + i);
 		setPoints(exam + i);
 		for (int answerId = 1; answerId <= NUMBER_OF_ANSWERS; answerId++) {

@@ -42,14 +42,18 @@ void showProfile(Student const * const student) {
 }
 
 void startExam(Student * const student) {
+	Question exam[EXAM_LENGTH];
+	loadExam(exam);
+	if (numberOfQuestions == 0) {
+		printf("\n!! Nema registrovanih ispita !!");
+		return;
+	}
 	printf("\n>---------------<\n");
 	printf("Ispit");
 	printf("\n>---------------<");
 	resetExamData(student);
-	Question exam[EXAM_LENGTH];
 	Answer answers[NUMBER_OF_ANSWERS];
 	int answer;
-	loadExam(exam);
 	for (int i = 0; i < numberOfQuestions; i++) {
 		printf("\n--------------------\n");
 		printf("Pitanje %d: %s?\n\n", i+1,(exam + i)->name_);

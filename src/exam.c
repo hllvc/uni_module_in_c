@@ -4,7 +4,7 @@
 
 void setQuestion(Question * const question) {
 	printf("* Pitanje: ");
-	scanf("%s", question->name_);
+	scanf(" %[^\n]%*c", question->name_);
 }
 
 void setPoints(Question * const question) {
@@ -19,7 +19,7 @@ void setCorrectAnswer(Question * const question) {
 
 void setAnswer(Answer *const answer, int const answerId) {
 	printf("* Odgovor broj %d: ", answerId);
-	scanf("%s", answer->name_);
+	scanf(" %[^\n]%*c", answer->name_);
 }
 
 void setAnswerId(Answer *const answer, int const answerId) {

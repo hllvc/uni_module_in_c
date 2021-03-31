@@ -81,7 +81,7 @@ void appendAnswer(char const filename[], Answer const * const answer) {
 }
 
 void saveExam(Question exam[], int const examLength) {
-	FILE * file = fopen("exam.dat", "ab+");
+	FILE * file = fopen("exam/exam.dat", "ab+");
 	if (file != NULL)
 		for (int i = 0; i < examLength; i++)
 			fwrite(exam + i, sizeof(Question), 1, file);
@@ -102,7 +102,9 @@ void loadStudents(Student allStudents[]) {
 
 void loadExam(Question exam[]) {
 	numberOfQuestions = 0;
-	FILE * file = fopen("exam.dat", "rb+");
+	FILE * file = fopen("exam/exam.dat", "rb+");
+	if (file == NULL)
+		return;
 	if (file != NULL)
 		while(fread(exam + numberOfQuestions, sizeof(Question), 1, file))
 			numberOfQuestions++;
@@ -111,7 +113,7 @@ void loadExam(Question exam[]) {
 
 void getQuestion(Answer answers[], int const number) {
 	char filename[16];
-	sprintf(filename, "Q&A_%d.dat", number);
+	sprintf(filename, "exam/Q&A_%d.dat", number);
 	int counter = 0;
 	FILE * file = fopen(filename, "rb+");
 	if (file != NULL)
