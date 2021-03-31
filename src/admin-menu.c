@@ -127,8 +127,10 @@ void createExam(void) {
 	printf("Kreiranje ispita");
 	printf("\n-------------------\n");
 	int examLength;
-	printf("\nBroj pitanja: ");
-	scanf("%d", &examLength);
+	do {
+		printf("\nBroj pitanja: ");
+		scanf("%d", &examLength);
+	} while (notValidExamLength(examLength));
 	char filename[16];
 	Question exam[examLength];
 	Answer answer;
@@ -144,7 +146,6 @@ void createExam(void) {
 			setAnswer(&answer, answerId);
 			appendAnswer(filename, &answer);
 		}
-		printf("\n");
 		setCorrectAnswer(exam + i);
 	}
 	saveExam(exam, examLength);

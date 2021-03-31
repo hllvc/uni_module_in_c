@@ -10,6 +10,8 @@ extern Student allStudents[];
 
 Student * const login(void);
 const int isAdmin(Student const * const student);
+const int notValidAnswer(int const answer);
+const int notValidExamLength(int const length);
 Student * const getStudent(void);
 void updateData();
 void appendStudent(Student const * const student);

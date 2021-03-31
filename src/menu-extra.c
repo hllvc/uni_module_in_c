@@ -24,6 +24,22 @@ Student * const login(void) {
 	}
 }
 
+const int notValidExamLength(int const length) {
+	if (length < 0 || length > EXAM_LENGTH) {
+		printf("\n!! Maksimalan broj pitanja je %d !!\n", EXAM_LENGTH);
+		return 1;
+	}
+	return 0;
+}
+
+const int notValidAnswer(int const answer) {
+	if (answer < 0 || answer > NUMBER_OF_ANSWERS) {
+		printf("\n!! Pogresan unos !!\n");
+		return 1;
+	}
+	return 0;
+}
+
 const int isAdmin(Student const * const student) {
 	if (student->id_ == 1)
 		return 1;

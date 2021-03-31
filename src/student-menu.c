@@ -48,9 +48,9 @@ void startExam(Student * const student) {
 		printf("\n!! Nema registrovanih ispita !!");
 		return;
 	}
-	printf("\n>---------------<\n");
+	printf("\n---------------\n");
 	printf("Ispit");
-	printf("\n>---------------<");
+	printf("\n---------------");
 	resetExamData(student);
 	Answer answers[NUMBER_OF_ANSWERS];
 	int answer;
@@ -61,8 +61,10 @@ void startExam(Student * const student) {
 		for (int i = 0; i < NUMBER_OF_ANSWERS; i++) {
 			printf("(%d) %s\n", i+1,(answers + i)->name_);
 		}
-		printf("\nUnesite odgovor: ");
-		scanf("%d", &answer);
+		do {
+			printf("\nUnesite odgovor: ");
+			scanf("%d", &answer);
+		} while(notValidAnswer(answer));
 		if((exam + i)->correctAnswer_ == answer) {
 			printf("Tacno!\n");
 			printf("Broj osvojenih poena %.2lf", (exam + i)->numberOfPoints_);

@@ -1,6 +1,7 @@
 #include <stdio.h>
 
 #include "../include/exam.h"
+#include "../include/menu-extra.h"
 
 void setQuestion(Question * const question, int const questionId) {
 	printf("* Pitanje broj %d: ", questionId);
@@ -13,8 +14,10 @@ void setPoints(Question * const question) {
 }
 
 void setCorrectAnswer(Question * const question) {
-	printf("* Tacan odgovor (unesite redni broj pitanja): ");
-	scanf("%d", &question->correctAnswer_);
+	do {
+		printf("\n* Tacan odgovor (unesite redni broj pitanja): ");
+		scanf("%d", &question->correctAnswer_);
+	} while (notValidAnswer(question->correctAnswer_));
 }
 
 void setAnswer(Answer *const answer, int const answerId) {
