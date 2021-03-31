@@ -3,9 +3,11 @@
 
 #include "../include/student.h"
 
+// varijable definisane negdje drugo
 extern Student allStudents[];
 extern int numberOfStudents;
 
+// funckije
 const int emailExists(char const * const email);
 const int idExists(int const id);
 const int notValidPassword(char const * const password);

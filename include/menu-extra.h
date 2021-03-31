@@ -4,10 +4,12 @@
 #include "../include/student.h"
 #include "../include/exam.h"
 
+// varijable defnisane npr u main
 extern int numberOfStudents;
 extern int numberOfQuestions;
 extern Student allStudents[];
 
+// funckije
 Student * const login(void);
 const int isAdmin(Student const * const student);
 const int notValidAnswer(int const answer);
