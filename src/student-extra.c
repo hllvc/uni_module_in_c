@@ -38,7 +38,7 @@ void printStudent(Student const * const student) {
 	printf("\nLast name: %s", student->lastName_);
 	printf("\nEmail: %s", student->email_);
 	printf("\nAge: %d", student->age_);
-	printf("\nNumber of points: %lf", student->numberOfPoints_);
+	printf("\nNumber of points: %.2lf", student->numberOfPoints_);
 	printf("\nGrade: %d", student->grade_);
 	printf("\nID: %lu", student->id_);
 }

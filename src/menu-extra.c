@@ -12,13 +12,13 @@ Student * const login(void) {
 	Student * const student = getStudent();
 	char password[MAX_PASSWORD];
 	while (1) {
-		printf("\n* Password: ");
+		printf("* Password: ");
 		scanf("%s", password);
 		for (int i = 0; i < numberOfStudents; i++) {
 			if (!strcmp(student->password_, password))
 				return student;
 		}
-		printf("\n>------------------<\n");
+		printf(">------------------<\n");
 		printf("!! Pogresna sifra !!");
 		printf("\n>------------------<\n");
 	}
@@ -37,9 +37,9 @@ Student * const getStudent(void) {
 		printf("\n* Email: ");
 		scanf("%s", email);
 		if (!emailExists(email)) {
-			printf("\n>-----------------------------------------<\n");
+			printf(">-----------------------------------------<\n");
 			printf("!! Ucenik sa unesenim emailom ne postoji !!");
-			printf("\n>-----------------------------------------<\n");
+			printf("\n>-----------------------------------------<");
 		}
 		else {
 			for (int i = 0; i < numberOfStudents; i++)

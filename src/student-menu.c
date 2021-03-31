@@ -27,7 +27,7 @@ void studentMenu(Student * const student) {
 				startExam(student);
 				break;
 			case CHOICE0:
-				printf("!! Gasenje programa ...");
+				printf("\n!! Gasenje programa ...");
 				exit(0);
 			default:
 				printf("\n>-------------------<\n");
@@ -42,9 +42,9 @@ void showProfile(Student const * const student) {
 }
 
 void startExam(Student * const student) {
-	/* printf("\n>---------------<\n"); */
-	/* printf("!! Not working !!"); */
-	/* printf("\n>---------------<"); */
+	printf("\n>---------------<\n");
+	printf("Ispit");
+	printf("\n>---------------<");
 	resetExamData(student);
 	Question exam[EXAM_LENGTH];
 	Answer answers[NUMBER_OF_ANSWERS];
@@ -61,7 +61,7 @@ void startExam(Student * const student) {
 		scanf("%d", &answer);
 		if((exam + i)->correctAnswer_ == answer) {
 			printf("Tacno!\n");
-			printf("Broj osvojenih poena %lf", (exam + i)->numberOfPoints_);
+			printf("Broj osvojenih poena %.2lf", (exam + i)->numberOfPoints_);
 			appendPoints(student, exam->numberOfPoints_);
 		}
 		else printf("Netacno!");

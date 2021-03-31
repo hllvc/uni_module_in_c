@@ -46,12 +46,10 @@ void adminMenu(void) {
 				resetData();
 				break;
 			case CHOICE0:
-				printf("!! Gasenje programa ...");
+				printf("\n!! Gasenje programa ...");
 				exit(0);
 			default:
-				printf("\n>-----------------<\n");
-				printf("!! Pogresan unos !!");
-				printf("\n>-----------------<");
+				printf("\n\n!! Pogresan unos !!");
 		}
 	};
 
