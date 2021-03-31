@@ -111,6 +111,7 @@ void loadStudents(Student allStudents[]) {
 	if (file == NULL) {
 		resetData();
 		make_directory();
+		file = fopen("students.dat", "rb+");
 	}
 	if (file != NULL)
 		while(fread(allStudents + numberOfStudents, sizeof(Student), 1, file)) {
