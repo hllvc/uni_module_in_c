@@ -81,7 +81,7 @@ void appendAnswer(char const filename[], Answer const * const answer) {
 }
 
 void saveExam(Question exam[], int const examLength) {
-	FILE * file = fopen("exam/exam.dat", "ab+");
+	FILE * file = fopen("exam/exam.dat", "wb+");
 	if (file != NULL)
 		for (int i = 0; i < examLength; i++)
 			fwrite(exam + i, sizeof(Question), 1, file);

@@ -18,7 +18,7 @@ typedef struct {
 	int correctAnswer_;
 } Question;
 
-void setQuestion(Question * const question);
+void setQuestion(Question * const question, int const questionId);
 void setPoints(Question * const question);
 void setCorrectAnswer(Question * const question);
 

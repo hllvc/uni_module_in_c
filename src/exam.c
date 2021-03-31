@@ -2,8 +2,8 @@
 
 #include "../include/exam.h"
 
-void setQuestion(Question * const question) {
-	printf("* Pitanje: ");
+void setQuestion(Question * const question, int const questionId) {
+	printf("* Pitanje broj %d: ", questionId);
 	scanf(" %[^\n]%*c", question->name_);
 }
 

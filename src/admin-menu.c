@@ -134,13 +134,17 @@ void createExam(void) {
 	Answer answer;
 	for (int i = 0; i < examLength; i++) {
 		sprintf(filename, "exam/Q&A_%d.dat", i+1);
-		setQuestion(exam + i);
+		fclose(fopen(filename, "wb+"));
+		printf("\n");
+		setQuestion(exam + i, i+1);
 		setPoints(exam + i);
+		printf("\n");
 		for (int answerId = 1; answerId <= NUMBER_OF_ANSWERS; answerId++) {
 			setAnswerId(&answer, answerId);
 			setAnswer(&answer, answerId);
 			appendAnswer(filename, &answer);
 		}
+		printf("\n");
 		setCorrectAnswer(exam + i);
 	}
 	saveExam(exam, examLength);

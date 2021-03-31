@@ -66,7 +66,7 @@ void startExam(Student * const student) {
 		if((exam + i)->correctAnswer_ == answer) {
 			printf("Tacno!\n");
 			printf("Broj osvojenih poena %.2lf", (exam + i)->numberOfPoints_);
-			appendPoints(student, exam->numberOfPoints_);
+			appendPoints(student, (exam + i)->numberOfPoints_);
 		}
 		else printf("Netacno!");
 		printf("\n--------------------------\n");

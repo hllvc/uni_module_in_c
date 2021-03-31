@@ -48,7 +48,7 @@ void resetExamData(Student * const student) {
 	student->grade_ = 0;
 }
 
-void appendPoints(Student * const student, int const points) {
+void appendPoints(Student * const student, double const points) {
 	student->numberOfPoints_ += points;
 }
 
@@ -65,5 +65,6 @@ void gradeStudent(Student * const student) {
 	else if (points > 55 && points < 65)
 		student->grade_ = 6;
 	else student->grade_ = 0;
+	printf("\nBroj poena: %.2lf", student->numberOfPoints_);
 	printf("\nOcjena: %d", student->grade_);
 }

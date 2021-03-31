@@ -14,7 +14,7 @@ const int notValidAge(int const age);
 void printStudent(Student const * const student);
 
 void gradeStudent(Student * const student);
-void appendPoints(Student * const student, int const points);
+void appendPoints(Student * const student, double const points);
 void resetExamData(Student * const student);
 
 #endif // __STUDENT_EXSTRA_H__
