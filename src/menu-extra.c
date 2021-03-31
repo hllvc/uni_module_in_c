@@ -145,6 +145,6 @@ void make_directory() {
    #ifdef __linux__
        mkdir("exam", 0755); 
    #else
-       _mkdir("exam");
+       mkdir("exam");
    #endif
 }
