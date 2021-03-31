@@ -21,5 +21,6 @@ void resetData(void);
 void loadStudents(Student allStudents[]);
 void loadExam(Question exam[]);
 void getQuestion(Answer answers[], int const number);
+void make_directory();
 
 #endif // __MENU_EXTRA_H__

@@ -1,6 +1,7 @@
 #include <stdio.h>
 #include <stdlib.h>
 #include <string.h>
+#include <sys/stat.h>
 
 #include "../include/menu-extra.h"
 #include "../include/student-extra.h"
@@ -107,8 +108,10 @@ void saveExam(Question exam[], int const examLength) {
 void loadStudents(Student allStudents[]) {
 	numberOfStudents = 0;
 	FILE * file = fopen("students.dat", "rb+");
-	if (file == NULL)
+	if (file == NULL) {
 		resetData();
+		make_directory();
+	}
 	if (file != NULL)
 		while(fread(allStudents + numberOfStudents, sizeof(Student), 1, file)) {
 			numberOfStudents++;
@@ -135,4 +138,12 @@ void getQuestion(Answer answers[], int const number) {
 	if (file != NULL)
 		while(fread(answers + counter, sizeof(Answer), 1, file))
 			counter++;
+}
+
+void make_directory() {
+   #ifdef __linux__
+       mkdir("exam", 0755); 
+   #else
+       _mkdir("exam");
+   #endif
 }
