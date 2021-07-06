@@ -1,27 +1,24 @@
 #ifndef __ADMIN_MENU_H__
 #define __ADMIN_MENU_H__
 
-// predefinisane konstante za odabir koje se mogu promijenit
-#define CHOICE1 '1'
-#define CHOICE2 '2'
-#define CHOICE3 '3'
-#define CHOICE4 '4'
-#define CHOICE5 '5'
-#define CHOICEr 'r'
-#define CHOICE0 '0'
+#define C_1 '1'
+#define C_2 '2'
+#define C_3 '3'
+#define C_4 '4'
+#define C_5 '5'
+#define C_r 'r'
+#define C_0 '0'
 
 #include "../include/student.h"
 
-// varijable koje koristimo u funkcijama ali su definisane npr u main
-extern int numberOfStudents;
-extern Student allStudents[];
+extern int studentsNum;
+extern Student students[];
 
-// lista funkcija
-void adminMenu(void);
-void addStudent(void);
+void admin(void);
+void enrollStudent(void);
+void removeStudent(void);
 void editStudent(void);
-void deleteStudent(void);
-void listStudents(Student const allStudents[]);
-void createExam(void);
+void listAllStudents(Student const allStudents[]);
+void generateExam(void);
 
-#endif // __ADMIN_MENU_H__
+#endif	// __ADMIN_MENU_H__

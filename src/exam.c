@@ -1,30 +1,31 @@
+#include "../include/exam.h"
+
 #include <stdio.h>
 
-#include "../include/exam.h"
 #include "../include/menu-extra.h"
 
-void setQuestion(Question * const question, int const questionId) { // postavljanje pitanja
-	printf("* Pitanje broj %d: ", questionId);
-	scanf(" %[^\n]%*c", question->name_);
+void generateQuestion(Question* const question, int const questionId) {
+  printf("Question number %d:\n> ", questionId);
+  scanf(" %[^\n]%*c", question->name_);
 }
 
-void setPoints(Question * const question) { // poeni za pitanje
-	printf("* Broj poena za dato pitanje: ");
-	scanf(" %lf", &question->numberOfPoints_);
+void setPoints(Question* const question) {
+  printf("Points for given question\n> ");
+  scanf(" %lf", &question->numberOfPoints_);
 }
 
-void setCorrectAnswer(Question * const question) { // unos tacnog odgovora sa granicom ako se unese izvan
-	do {
-		printf("\n* Tacan odgovor (unesite redni broj pitanja): ");
-		scanf("%d", &question->correctAnswer_);
-	} while (notValidAnswer(question->correctAnswer_));
+void markCorrectAnswer(Question* const question) {
+  do {
+    printf("\nMark correct answer (enter number of answer)\n> ");
+    scanf("%d", &question->correctAnswer_);
+  } while (wrongAnswer(question->correctAnswer_));
 }
 
-void setAnswer(Answer *const answer, int const answerId) { // postavljanje odgovra
-	printf("* Odgovor broj %d: ", answerId);
-	scanf(" %[^\n]%*c", answer->name_);
+void generateAnswer(Answer* const answer, int const answerId) {
+  printf("Answer number%d\n> ", answerId);
+  scanf(" %[^\n]%*c", answer->name_);
 }
 
-void setAnswerId(Answer *const answer, int const answerId) {
-	answer->id_ = answerId;
+void generateAnswerId(Answer* const answer, int const answerId) {
+  answer->id_ = answerId;
 }

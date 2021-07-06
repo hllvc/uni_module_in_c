@@ -1,160 +1,149 @@
+#include "../include/admin-menu.h"
+
 #include <stdio.h>
 #include <stdlib.h>
 #include <string.h>
 
-#include "../include/admin-menu.h"
-#include "../include/student.h"
+#include "../include/exam.h"
 #include "../include/menu-extra.h"
 #include "../include/student-extra.h"
-#include "../include/exam.h"
+#include "../include/student.h"
 
-void adminMenu(void) {
-	char choice;
-	while (1) {
-		// ispisujemo menu za admina
-		printf("\n\n----------------------");
-		printf("\nADMIN MENU\n\n");
-		printf("(%c) Novi student\n", CHOICE1);
-		printf("(%c) Uredi studenta\n", CHOICE2);
-		printf("(%c) Obrisi studenta\n", CHOICE3);
-		printf("(%c) Prikazi sve studente\n", CHOICE4);
-		printf("(%c) Kreiraj ispit\n", CHOICE5);
-		printf("\n(%c) Resetuj sve podatke\n", CHOICEr);
+void admin(void) {
+  char choice;
+  while (1) {
+    printf("\n\n----------------------");
+    printf("\nADMIN\n\n");
+    printf("[%c] Enroll student\n", C_1);
+    printf("[%c] Edit student\n", C_2);
+    printf("[%c] Generate test\n", C_5);
+    printf("\n[%c] Reset all\n", C_r);
 
-		printf("\n(%c) Kraj\n", CHOICE0);
+    printf("\n[%c] Exit\n", C_0);
 
-		// unosimo odabir
-		printf("\n* Odabir: ");
-		scanf(" %c", &choice);
+    printf("\nChoice\n> ");
+    scanf(" %c", &choice);
 
-		switch (choice) {
-			// odabir opcije
-			case CHOICE1:
-				addStudent();
-				loadStudents(allStudents);
-				break;
-			case CHOICE2:
-				editStudent();
-				break;
-			case CHOICE3:
-				deleteStudent();
-				break;
-			case CHOICE4:
-				listStudents(allStudents);
-				break;
-			case CHOICE5:
-				createExam();
-				break;
-			case CHOICEr:
-				resetData();
-				break;
-			case CHOICE0:
-				// izazenje iz programa na 0
-				printf("\n!! Gasenje programa ...");
-				exit(0);
-			default:
-				// u slucaju nekog drugog unosa osim zadanog izbacuje pogresan unos
-				printf("\n\n!! Pogresan unos !!");
-		}
-	};
-
-
+    switch (choice) {
+    case C_1:
+      enrollStudent();
+      loadStudents(students);
+      break;
+    case C_2:
+      editStudent();
+      break;
+    case C_3:
+      removeStudent();
+      break;
+    case C_4:
+      listAllStudents(students);
+      break;
+    case C_5:
+      generateExam();
+      break;
+    case C_r:
+      resetData();
+      break;
+    case C_0:
+      printf("\n>> Exiting ...");
+      exit(0);
+    default:
+      printf("\n\n>> Wrong input <<");
+    }
+  };
 }
 
-void addStudent(void) {
-	printf("\n-------------------\n");
-	printf("Novi student");
-	printf("\n-------------------\n");
-	Student student = {0, "", "", "", "", 0, 0, 0}; // kreiramo pocetno stanje studenta sa svim praznim ili nultim opcijama
-	// popunjavanje vrijednosti studenta
-	setFirstName(&student);
-	setLastName(&student);
-	setAge(&student);
-	setEmail(&student);
-	setPassword(&student);
-	setId(&student);
-	appendStudent(&student); // sacuvamo studenta u file
-	numberOfStudents++; // povecavamo broj studenata
-	printf("\n-------------------\n");
-	printf("!! Uspijesno registrovan novi student !!");
-	printf("\n-------------------");
+void enrollStudent(void) {
+  printf("\n-------------------\n");
+  printf("New Student");
+  printf("\n-------------------\n");
+  Student student = {0, "", "", "", "", 0, 0, 0};
+  firstNameInput(&student);
+  lastNameInput(&student);
+  ageInput(&student);
+  emailInput(&student);
+  passInput(&student);
+  generateId(&student);
+  appendStudent(&student);
+  studentsNum++;
+  printf("\n-------------------\n");
+  printf(">> Successfully enrolled new student <<");
+  printf("\n-------------------");
 }
 
 void editStudent(void) {
-	if (!(numberOfStudents > 1)) { // ako nema registrovanih studenata izbacuje poruku i vraca se
-		printf("\n!! Nema registrovanih studenata !!");
-		return;
-	}
-	printf("\n-------------------\n");
-	printf("Uredi studenta");
-	printf("\n-------------------\n");
-	Student * const student = getStudent(); // vraca studenta sa unosom maila
-	printf("\n!! Unesite nove podatke !!\n\n");
-	// update podataka
-	setFirstName(student);
-	setLastName(student);
-	setAge(student);
-	updateData(); // overwrite file u kojem cuvamo sa novim izmjenjenim podacima
-	printf("\n-------------------\n");
-	printf("!! Uspijesno uredjen student %s !!", student->email_);
-	printf("\n-------------------");
+  if (!(studentsNum > 1)) {
+    printf("\n>> There is no students enrolled <<");
+    return;
+  }
+  printf("\n-------------------\n");
+  printf("Edit Student");
+  printf("\n-------------------\n");
+  Student* const student = getStudent();
+  printf("\n>> Input new info <<\n\n");
+  firstNameInput(student);
+  lastNameInput(student);
+  ageInput(student);
+  updateData();
+  printf("\n-------------------\n");
+  printf(">> Successfully edited student %s <<", student->email_);
+  printf("\n-------------------");
 }
 
-void deleteStudent(void) {
-	if (!(numberOfStudents > 1)) { // ako nema registrovanih studenata izbacuje poruku i vraca se
-		printf("\n!! Nema registrovanih studenata !!");
-		return;
-	}
-	printf("\n-------------------\n");
-	printf("Obrisi studenta");
-	printf("\n-------------------\n");
-	Student * const student = getStudent(); // vraca studenta sa unosom maila
-	student->id_ = 0; // postavlja id na 0, na osnovu kojem brisemo studenta
-	updateData(); // update file bez studenta
-	numberOfStudents--; // smanjumemo broj studenata jer je obrisan
-	printf("\n-------------------\n");
-	printf("!! Student %s je obrisan sa liste !!", student->email_);
-	printf("\n-------------------");
+void removeStudent(void) {
+  if (!(studentsNum > 1)) {
+    printf("\n>> There is no students enrolled <<");
+    return;
+  }
+  printf("\n-------------------\n");
+  printf("Remove Student");
+  printf("\n-------------------\n");
+  Student* const student = getStudent();
+  student->id_ = 0;
+  updateData();
+  studentsNum--;
+  printf("\n-------------------\n");
+  printf(">> Student %s is removed <<", student->email_);
+  printf("\n-------------------");
 }
 
-void listStudents(Student const allStudents[]) {
-	if (!(numberOfStudents > 1)) { // ako nema registrovanih studenata izbacuje poruku i vraca se
-		printf("\n!! Nema registrovanih studenata !!");
-		return;
-	}
-	printf("\n-------------------\n");
-	printf("Lista svih studenata");
-	printf("\n-------------------\n");
-	for (int i = 0; i < numberOfStudents; i++) { // prolazimo kroz niz studenata i ispisujemo vrijednost
-		if (!isAdmin(allStudents + i))
-			printStudent(allStudents + i); // funckija koja printa atribute studenta
-	}
+void listAllStudents(Student const students[]) {
+  if (!(studentsNum > 1)) {
+    printf("\n>> There is no students enrolled <<");
+    return;
+  }
+  printf("\n-------------------\n");
+  printf("All Students");
+  printf("\n-------------------\n");
+  for (int i = 0; i < studentsNum; i++) {
+    if (!checkIfAdmin(students + i)) showStudent(students + i);
+  }
 }
-void createExam(void) {
-	printf("\n-------------------\n");
-	printf("Kreiranje ispita");
-	printf("\n-------------------\n");
-	int examLength; // deklaracija varijable za broj pitanja
-	do { // vrti se u krug dokle ne unesemo valid broj pitanja
-		printf("\nBroj pitanja: ");
-		scanf("%d", &examLength);
-	} while (notValidExamLength(examLength));
-	char filename[16]; // varijabla koja ce cuvat ime file sa odgovorima za odredjeno pitanje po broju
-	Question exam[examLength]; // niz pitanja
-	Answer answer; // odgovor
-	for (int i = 0; i < examLength; i++) {
-		sprintf(filename, "exam/Q&A_%d.dat", i+1); // spremamo ime file u varijabu filename
-		fclose(fopen(filename, "wb+")); // overwrite staru vrijednost sa nista
-		printf("\n");
-		setQuestion(exam + i, i+1); // postavljamo pitanje
-		setPoints(exam + i); // unosimo broj poena za pitanje
-		printf("\n");
-		for (int answerId = 1; answerId <= NUMBER_OF_ANSWERS; answerId++) { // prolazimo kroz broj odgovora i navodimo
-			setAnswerId(&answer, answerId); // id od odgovora
-			setAnswer(&answer, answerId); // text odgovora
-			appendAnswer(filename, &answer); // dodaje odogovor i zadati filename
-		}
-		setCorrectAnswer(exam + i); // biljezimo tacan odgovor
-	}
-	saveExam(exam, examLength); // sacuvamo citav ispit
+void generateExam(void) {
+  printf("\n-------------------\n");
+  printf("GENERATE TEST");
+  printf("\n-------------------\n");
+  int examLength;
+  do {
+    printf("\nNumber of questions\n> ");
+    scanf("%d", &examLength);
+  } while (checkTestSize(examLength));
+  char filename[16];
+  Question exam[examLength];
+  Answer answer;
+  for (int i = 0; i < examLength; i++) {
+    sprintf(filename, "exam/Q&A_%d.dat", i + 1);
+    fclose(fopen(filename, "wb+"));
+    printf("\n");
+    generateQuestion(exam + i, i + 1);
+    setPoints(exam + i);
+    printf("\n");
+    for (int answerId = 1; answerId <= ANSWERS; answerId++) {
+      generateAnswerId(&answer, answerId);
+      generateAnswer(&answer, answerId);
+      appendAnswer(filename, &answer);
+    }
+    markCorrectAnswer(exam + i);
+  }
+  saveTest(exam, examLength);
 }

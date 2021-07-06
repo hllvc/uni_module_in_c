@@ -1,31 +1,28 @@
 #ifndef __EXAM_H__
 #define __EXAM_H__
 
-// velicina pitanja i odgovora
-#define Q_LENGTH 45
-#define A_LENGTH 15
+#define QUESTION_SIZE 50
+#define ANSWER_SIZE 20
 
-// broj putanja i odgovora
-#define NUMBER_OF_ANSWERS 3
-#define EXAM_LENGTH 5
+#define ANSWERS 3
+#define EXAM_SIZE 5
 
-typedef struct { // struktura za odgovor
-	int id_;
-	char name_[A_LENGTH];
+typedef struct {
+  int id_;
+  char name_[ANSWER_SIZE];
 } Answer;
 
-typedef struct { // struktura za pitanje
-	char name_[Q_LENGTH];
-	double numberOfPoints_;
-	int correctAnswer_;
+typedef struct {
+  char name_[QUESTION_SIZE];
+  double numberOfPoints_;
+  int correctAnswer_;
 } Question;
 
-// funkcije
-void setQuestion(Question * const question, int const questionId);
-void setPoints(Question * const question);
-void setCorrectAnswer(Question * const question);
+void generateQuestion(Question* const question, int const questionId);
+void setPoints(Question* const question);
+void markCorrectAnswer(Question* const question);
 
-void setAnswer(Answer * const answer, int const answerId);
-void setAnswerId(Answer * const answer, int const answerId);
+void generateAnswer(Answer* const answer, int const answerId);
+void generateAnswerId(Answer* const answer, int const answerId);
 
-#endif // __EXAM_H__
+#endif	// __EXAM_H__
